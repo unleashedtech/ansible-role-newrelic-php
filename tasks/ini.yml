@@ -1,0 +1,33 @@
+---
+- name: Find PHP version
+  shell: "php -r 'echo PHP_MAJOR_VERSION . \".\" . PHP_MINOR_VERSION;'"
+  register: php_version_raw
+
+- name: Set Fact -- PHP version
+  set_fact:
+    php_version: "{{ php_version_raw.stdout }}"
+
+- name: Delete default New Relic .ini files
+  file:
+    dest: "{{ item }}"
+    state: absent
+  notify: reload php-fpm
+  with_items:
+    - "/etc/php/{{ php_version }}/cli/conf.d/newrelic.ini"
+    - "/etc/php/{{ php_version }}/fpm/conf.d/newrelic.ini"
+
+- name: Template New Relic .ini file out to mods-available
+  template:
+    src: newrelic.ini.j2
+    dest: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
+
+- name: Symlink New Relic .ini file to cli and fpm conf.d
+  file:
+    src: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
+    dest: "{{ item }}"
+    state: link
+    force: yes
+  notify: reload php-fpm
+  with_items:
+    - "/etc/php/{{ php_version }}/cli/conf.d/20-newrelic.ini"
+    - "/etc/php/{{ php_version }}/fpm/conf.d/20-newrelic.ini"
