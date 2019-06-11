@@ -30,7 +30,7 @@ Run `$ ansible-galaxy install -r requirements.yml` to install this new role.
 # New Relic License Key
 ## You should store this in an encrypted vault file!
 ## See: https://docs.newrelic.com/docs/accounts-partnerships/accounts/account-setup/license-key
-newrelic_php_license_key: xxxxxxxxxxx
+newrelic_license_key: xxxxxxxxxxx
 
 # Indicates the desired package state.
 # `latest` ensures that the latest version is installed.

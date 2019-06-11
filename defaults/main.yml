@@ -1,7 +1,7 @@
 newrelic_php_package_state: latest
 
 newrelic_php_config_default:
-  license: "{{ newrelic_php_license_key }}"
+  license: "{{ newrelic_license_key }}"
   appname: "{{ newrelic_php_appname | default('PHP Application') }}"
   logfile: /var/log/newrelic/php_agent.log
   daemon.logfile: /var/log/newrelic/newrelic-daemon.log
