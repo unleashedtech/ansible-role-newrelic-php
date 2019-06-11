@@ -13,7 +13,7 @@
   file:
     dest: "{{ item }}"
     state: absent
-  notify: reload php-fpm
+  notify: restart php-fpm
   with_items:
     - "/etc/php/{{ php_version }}/cli/conf.d/newrelic.ini"
     - "/etc/php/{{ php_version }}/fpm/conf.d/newrelic.ini"
@@ -29,7 +29,7 @@
     dest: "{{ item }}"
     state: link
     force: yes
-  notify: reload php-fpm
+  notify: restart php-fpm
   with_items:
     - "/etc/php/{{ php_version }}/cli/conf.d/20-newrelic.ini"
     - "/etc/php/{{ php_version }}/fpm/conf.d/20-newrelic.ini"
