@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: newrelic_php
   author: Colin O'Dell
   description: Installs the New Relic PHP agent
   company: Unleashed Technologies
