@@ -1,6 +1,6 @@
 # New Relic PHP Agent - Ansible Role
 
-[![Ansible Role](https://img.shields.io/ansible/role/20311.svg)](https://galaxy.ansible.com/TypistTech/trellis-newrelic-php/)
+[![Ansible Role](https://img.shields.io/ansible/role/41137.svg)](https://galaxy.ansible.com/unleashedtech/newrelic_php)
 [![Build Status](https://travis-ci.org/unleashedtech/ansible-role-newrelic-php.svg?branch=master)](https://travis-ci.org/unleashedtech/ansible-role-newrelic-php)
 [![GitHub tag](https://img.shields.io/github/tag/unleashedtech/ansible-role-newrelic-php.svg)](https://github.com/unleashedtech/ansible-role-newrelic-php/tags)
 [![license](https://img.shields.io/github/license/unleashedtech/ansible-role-newrelic-php.svg)](https://github.com/unleashedtech/ansible-role-newrelic-php/blob/master/LICENSE)
