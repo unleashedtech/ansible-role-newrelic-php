@@ -1,7 +1,7 @@
 ---
 - fail:
-    msg: vault_newrelic_license is not defined
-  when: vault_newrelic_license is not defined
+    msg: newrelic_license_key is not defined
+  when: newrelic_license_key is not defined
 
 - include: install.yml
 - include: ini.yml

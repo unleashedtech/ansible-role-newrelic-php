@@ -1,10 +1,9 @@
-newrelic_package_state: latest
+newrelic_php_package_state: latest
 
-newrelic_config_default:
-  license: "{{ vault_newrelic_license }}"
-  appname: "{{ wordpress_sites.keys() | first }} {{ env }}"
-  framework: wordpress
+newrelic_php_config_default:
+  license: "{{ newrelic_php_license_key }}"
+  appname: "{{ newrelic_php_appname | default('PHP Application') }}"
   logfile: /var/log/newrelic/php_agent.log
   daemon.logfile: /var/log/newrelic/newrelic-daemon.log
 
-newrelic_config_combined: "{{ newrelic_config_default | combine(newrelic_config | default({})) }}"
+newrelic_php_config_combined: "{{ newrelic_php_config_default | combine(newrelic_php_config | default({})) }}"

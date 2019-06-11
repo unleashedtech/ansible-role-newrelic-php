@@ -1,13 +1,15 @@
 ---
-- name: Find PHP version
+- name: Find PHP version if not explicitly defined
   shell: "php -r 'echo PHP_MAJOR_VERSION . \".\" . PHP_MINOR_VERSION;'"
   register: php_version_raw
+  when: php_version is not defined
 
 - name: Set Fact -- PHP version
   set_fact:
     php_version: "{{ php_version_raw.stdout }}"
+  when: php_version is not defined
 
-- name: Delete default New Relic .ini files
+- name: Delete any default New Relic .ini files
   file:
     dest: "{{ item }}"
     state: absent

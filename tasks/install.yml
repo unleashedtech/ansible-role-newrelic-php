@@ -10,6 +10,6 @@
 - name: Install New Relic PHP agent
   apt:
     name: newrelic-php5
-    state: "{{ newrelic_package_state }}"
+    state: "{{ newrelic_php_package_state }}"
     update_cache: yes
-    cache_valid_time: "{{ apt_cache_valid_time }}"
+    cache_valid_time: "{{ apt_cache_valid_time|default(3600) }}"
