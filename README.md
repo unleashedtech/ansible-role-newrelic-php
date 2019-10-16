@@ -19,7 +19,7 @@ Add this role to `requirements.yml`:
 
 ```yaml
 - src: unleashedtech.newrelic_php
-  version: 0.1.0 # Check for latest version!
+  version: 1.0.0 # Check for latest version!
 ```
 
 Run `$ ansible-galaxy install -r requirements.yml` to install this new role.
