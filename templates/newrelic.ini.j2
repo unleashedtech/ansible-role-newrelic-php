@@ -13,6 +13,6 @@ extension = "newrelic.so"
 
 [newrelic]
 
-{% for key, value in newrelic_php_config_combined.iteritems() -%}
+{% for key, value in newrelic_php_config_combined.items() -%}
 newrelic.{{ key }} = {{ value | to_nice_json }}
 {% endfor -%}
