@@ -22,12 +22,14 @@
   template:
     src: newrelic.ini.j2
     dest: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
+    state: {{ (newrelic_php_package_state != "absent") | ternary("present", "absent") }}
+  notify: restart php-fpm
 
 - name: Symlink New Relic .ini file to cli and fpm conf.d
   file:
     src: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
     dest: "{{ item }}"
-    state: link
+    state: {{ (newrelic_php_package_state != "absent") | ternary("link", "absent") }}
     force: yes
   notify: restart php-fpm
   with_items:
