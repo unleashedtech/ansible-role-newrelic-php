@@ -35,7 +35,8 @@ newrelic_license_key: xxxxxxxxxxx
 # Indicates the desired package state.
 # `latest` ensures that the latest version is installed.
 # `present` does not update if already installed.
-# Choices: present|latest
+# `absent` will remove the package and all configuration files
+# Choices: present|latest|absent
 # Default: latest
 newrelic_php_package_state: present
 

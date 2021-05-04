@@ -22,16 +22,28 @@
   template:
     src: newrelic.ini.j2
     dest: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
-    state: {{ (newrelic_php_package_state != "absent") | ternary("present", "absent") }}
+  when: newrelic_php_package_state != 'absent'
   notify: restart php-fpm
 
 - name: Symlink New Relic .ini file to cli and fpm conf.d
   file:
     src: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
     dest: "{{ item }}"
-    state: {{ (newrelic_php_package_state != "absent") | ternary("link", "absent") }}
+    state: link
     force: yes
+  when: newrelic_php_package_state != 'absent'
   notify: restart php-fpm
   with_items:
+    - "/etc/php/{{ php_version }}/cli/conf.d/20-newrelic.ini"
+    - "/etc/php/{{ php_version }}/fpm/conf.d/20-newrelic.ini"
+
+- name: Remove New Relic .ini file and symlinks when uninstalled
+  file:
+    dest: "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
+    state: absent
+  when: newrelic_php_package_state == 'absent'
+  notify: restart php-fpm
+  with_items:
+    - "/etc/php/{{ php_version }}/mods-available/newrelic.ini"
     - "/etc/php/{{ php_version }}/cli/conf.d/20-newrelic.ini"
     - "/etc/php/{{ php_version }}/fpm/conf.d/20-newrelic.ini"
